@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: taskflow
+  namespace: argocd          # ArgoCD lives in its own namespace
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io   # Cleanup on delete
+spec:
+  project: default
+
+  # ── Source ──────────────────────────────────────────────────────────────────
+  source:
+    repoURL: https://github.com/YOUR_GITHUB_USERNAME/taskflow   # 👈 update this
+    targetRevision: HEAD      # Tracks the default branch (main/master)
+    path: k8s                 # Folder inside the repo with all manifests
+
+  # ── Destination ─────────────────────────────────────────────────────────────
+  destination:
+    server: https://kubernetes.default.svc   # In-cluster (Minikube)
+    namespace: taskflow
+
+  # ── Sync Policy ─────────────────────────────────────────────────────────────
+  syncPolicy:
+    automated:
+      prune: true       # Delete resources removed from Git
+      selfHeal: true    # Auto-correct manual cluster changes
+    syncOptions:
+      - CreateNamespace=true        # Auto-create taskflow namespace
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
