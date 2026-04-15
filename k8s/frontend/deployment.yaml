@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: amandeeprana/taskflow-frontend:f92f86e6d527cb2242f601994d421cb00e8f5269
+          image: amandeeprana/taskflow-frontend:5e3f9757747644a6fc8eb3600da08940c8783b6c
           imagePullPolicy: Always
           ports:
             - containerPort: 80
