@@ -10,4 +10,4 @@ spec:
     requests:
       storage: 1Gi
   # For Minikube use standard storage class
-  storageClassName: standard
+  storageClassName: local-path
