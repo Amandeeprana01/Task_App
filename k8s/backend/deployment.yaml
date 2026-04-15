@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: amandeeprana/taskflow-backend:40692855dec1c2ab63570119b26391cc14905016
+          image: amandeeprana/taskflow-backend:f92f86e6d527cb2242f601994d421cb00e8f5269
           # For local Minikube dev: use minikube image load instead
           imagePullPolicy: Always
           ports:
