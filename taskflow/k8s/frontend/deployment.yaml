@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: YOUR_DOCKERHUB_USERNAME/taskflow-frontend:latest
+          image: amandeeprana/taskflow-frontend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80

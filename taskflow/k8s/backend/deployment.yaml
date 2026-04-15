@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: YOUR_DOCKERHUB_USERNAME/taskflow-backend:latest
+          image: amandeeprana/taskflow-backend:latest
           # For local Minikube dev: use minikube image load instead
           imagePullPolicy: Always
           ports:

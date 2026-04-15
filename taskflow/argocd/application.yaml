@@ -10,7 +10,7 @@ spec:
 
   # ── Source ──────────────────────────────────────────────────────────────────
   source:
-    repoURL: https://github.com/YOUR_GITHUB_USERNAME/taskflow   # 👈 update this
+    repoURL: https://github.com/Amandeeprana01/Task_App # 👈 update this
     targetRevision: HEAD      # Tracks the default branch (main/master)
     path: k8s                 # Folder inside the repo with all manifests
 
