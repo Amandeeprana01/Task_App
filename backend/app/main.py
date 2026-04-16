@@ -9,7 +9,7 @@ async def lifespan(app: FastAPI):
     # Create tables on startup
     Base.metadata.create_all(bind=engine)
     yield
-
+    
 app = FastAPI(
     title="TaskFlow API",
     description="Real-time Task Manager API",

@@ -60,7 +60,7 @@ export default function App() {
     }
   }, [])
 
-  useWebSocket(handleWsMessage)
+  useWebSocket(handleWsMessage, setWsConnected)
 
   // Optimistic CRUD
   const handleCreate = async (formData) => {

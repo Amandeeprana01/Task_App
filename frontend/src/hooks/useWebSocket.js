@@ -14,7 +14,8 @@ export function useWebSocket(onMessage) {
       wsRef.current = ws
 
       ws.onopen = () => {
-        console.log('[WS] Connected to TaskFlow real-time server')
+        console.log('[WS] Connected')
+        onStatusChange?.(true)
       }
 
       ws.onmessage = (event) => {
