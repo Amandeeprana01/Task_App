@@ -20,27 +20,34 @@ export function useWebSocket(onMessage, onStatusChange) {
 
     ws.onopen = () => {
       console.log('[WS] Connected')
-      onStatusChange?.(true)
+      if (onStatusChange) onStatusChange(true)
     }
 
     ws.onmessage = (event) => {
-      const payload = JSON.parse(event.data)
-      onMessageRef.current(payload)
+      try {
+        const payload = JSON.parse(event.data)
+        onMessageRef.current(payload)
+      } catch (e) {
+        console.error('[WS] Parse error', e)
+      }
     }
 
     ws.onclose = () => {
-      onStatusChange?.(false)
+      if (onStatusChange) onStatusChange(false)
       reconnectTimer.current = setTimeout(connect, 3000)
     }
 
-    ws.onerror = () => ws.close()
+    ws.onerror = () => {
+      ws.close()
+    }
   }, [onStatusChange])
 
   useEffect(() => {
     connect()
+
     return () => {
       clearTimeout(reconnectTimer.current)
-      wsRef.current?.close()
+      if (wsRef.current) wsRef.current.close()
     }
   }, [connect])
 
